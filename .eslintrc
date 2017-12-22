@@ -1,0 +1,53 @@
+{
+  "plugins": [
+    "meteor"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:meteor/recommended",
+    "eslint:recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "allowImportExportEverywhere": true,
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "rules": {
+    "import/extensions": ["off", "never"],
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": [
+      2, { "ignore": ["^meteor/"] }
+    ],
+    "no-unused-vars": 1,
+    // enable this._variable (used many times to refer the this._id)
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    // setup the indentation to two spaces
+    "indent": ["error", 2],
+    // enable console
+    "no-console": 0,
+    // disable anonymous function
+    "func-names": [1, "as-needed"],
+    // enforce newline in end of the file
+    "eol-last": ["error", "always"],
+    // add some message to meteor global variable
+    "no-restricted-globals": [
+      "error", {
+        "name": "Meteor",
+        "message": "import { Meteor } from 'meteor/meteor' instead"
+      },
+      {
+        "name": "_",
+        "message": "do not use the global variable _"
+      }
+    ]
+  },
+  "env": {
+    // diable meteor global variable
+    // "meteor": true,
+    "node": true,
+    "browser": true
+  },
+}
