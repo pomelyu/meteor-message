@@ -16,5 +16,10 @@
 }
 
 .app-header {
+  
+}
 
+.app-header-toolbar {
+  display: flex;
+  justify-content: space-between;
 }
