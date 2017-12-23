@@ -1,0 +1,20 @@
+.app-grid-container {
+  display: grid;
+  grid-template-rows: [start] 60px [line1] auto [end];
+  height: 600px;
+  width: 400px;
+  border: 1px lightgray solid;
+}
+
+.app-grid-item-header {
+  grid-row: start / line1;
+}
+
+.app-grid-item-page {
+  grid-row: line1 / end;
+  overflow-y: scroll;
+}
+
+.app-header {
+
+}
