@@ -4,17 +4,19 @@ import PropTypes from 'prop-types';
 import List from 'material-ui/List';
 import TodoListItem from './TodoListItem.jsx';
 
-const TodoList = ({ className, todoList, onTodoChecked }) => (
+const TodoList = ({ className, todoList, onTodoChecked, onTodoShared }) => (
   <div className={`todo-list ${className}`}>
     <List>
       {
-        todoList.map(({ id, author, text, checked }) => (
+        todoList.map(({ id, author, text, checked, isPublic }) => (
           <TodoListItem
             key={id}
             author={author}
             text={text}
             checked={checked}
+            isPublic={isPublic}
             onCheckedChange={(e, v) => onTodoChecked(id, v)}
+            onPublicChange={(e, v) => onTodoShared(id, v)}
           />
         ))
       }
@@ -30,6 +32,7 @@ TodoList.propTypes = {
       author: PropTypes.string,
       text: PropTypes.string,
       checked: PropTypes.bool,
+      public: PropTypes.bool,
     })
   ),
 }

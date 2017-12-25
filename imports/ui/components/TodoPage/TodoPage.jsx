@@ -19,6 +19,7 @@ class TodoPage extends React.Component {
 
     this.handleTextSubmit = this.handleTextSubmit.bind(this);
     this.handleTodoChecked = this.handleTodoChecked.bind(this);
+    this.handleTodoShared = this.handleTodoShared.bind(this);
   }
 
   handleTextSubmit(text) {
@@ -28,6 +29,7 @@ class TodoPage extends React.Component {
       author: AUTHOR_ME,
       text,
       checked: false,
+      isPublic: false
     }
 
     todoList.push(todo);
@@ -41,12 +43,24 @@ class TodoPage extends React.Component {
     this.setState({ todoList });
   }
 
+  handleTodoShared(id, isPublic) {
+    const { todoList } = this.state;
+    const idx = _.findIndex(todoList, { id });
+    todoList[idx].isPublic = isPublic;
+    this.setState({ todoList });
+  }
+
   render() {
     const { todoList } = this.state;
     const { className } = this.props
     return (
       <div className={`todo-grid-container ${className}`}>
-        <TodoList className="todo-grid-item-list" todoList={todoList} onTodoChecked={this.handleTodoChecked} />
+        <TodoList
+          className="todo-grid-item-list"
+          todoList={todoList}
+          onTodoChecked={this.handleTodoChecked}
+          onTodoShared={this.handleTodoShared}
+        />
         <TodoInput className="todo-grid-item-input" submitOnClick={this.handleTextSubmit} />
       </div>
     )
