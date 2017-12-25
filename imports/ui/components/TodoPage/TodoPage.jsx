@@ -9,70 +9,47 @@ import './Todo.css';
 
 const AUTHOR_ME = 'me';
 
-class TodoPage extends React.Component {
-  constructor(props) {
-    super(props);
+const TodoPage = ({ className, todoList, addTodo, handleTodoChecked, handleTodoPubluc }) => {
 
-    this.state = {
-      todoList: [],
-    }
-
-    this.handleTextSubmit = this.handleTextSubmit.bind(this);
-    this.handleTodoChecked = this.handleTodoChecked.bind(this);
-    this.handleTodoShared = this.handleTodoShared.bind(this);
-  }
-
-  handleTextSubmit(text) {
-    const { todoList } = this.state;
+  const handleTextSubmit = (text) => {
     const todo = {
-      id: shortid.generate(),
       author: AUTHOR_ME,
       text,
       checked: false,
       isPublic: false
     }
-
-    todoList.push(todo);
-    this.setState({ todoList });
+    addTodo(todo);
   }
 
-  handleTodoChecked(id, checked) {
-    const { todoList } = this.state;
-    const idx = _.findIndex(todoList, { id });
-    todoList[idx].checked = checked;
-    this.setState({ todoList });
-  }
-
-  handleTodoShared(id, isPublic) {
-    const { todoList } = this.state;
-    const idx = _.findIndex(todoList, { id });
-    todoList[idx].isPublic = isPublic;
-    this.setState({ todoList });
-  }
-
-  render() {
-    const { todoList } = this.state;
-    const { className } = this.props
-    return (
-      <div className={`todo-grid-container ${className}`}>
-        <TodoList
-          className="todo-grid-item-list"
-          todoList={todoList}
-          onTodoChecked={this.handleTodoChecked}
-          onTodoShared={this.handleTodoShared}
-        />
-        <TodoInput className="todo-grid-item-input" submitOnClick={this.handleTextSubmit} />
-      </div>
-    )
-  }
+  return (
+    <div className={`todo-grid-container ${className}`}>
+      <TodoList
+        className="todo-grid-item-list"
+        todoList={todoList}
+        onTodoChecked={handleTodoChecked}
+        onTodoShared={handleTodoPubluc}
+      />
+      <TodoInput className="todo-grid-item-input" submitOnClick={handleTextSubmit} />
+    </div>
+  )
 }
 
 TodoPage.propTypes = {
   className: PropTypes.string,
+  todoList: PropTypes.arrayOf(PropTypes.any),
+  addTodo: PropTypes.func,
+  handleTodoChecked: PropTypes.func,
+  handleTodoPubluc: PropTypes.func,
 }
 
+/* eslint-disable no-unused-vars */
 TodoPage.defaultProps = {
   className: '',
+  todoList: [],
+  addTodo: (data) => {},
+  handleTodoChecked: (id, checked) => {},
+  handleTodoPubluc: (id, isPublic) => {},
 }
+/* eslint-enable */
 
 export default TodoPage;

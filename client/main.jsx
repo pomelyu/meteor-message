@@ -2,6 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { render } from 'react-dom';
 
+import '../imports/api/todos/todos.js';
+
+import '../imports/api/todos/todo_method.js';
+
 import App from '../imports/ui/App.jsx';
 
 Meteor.startup(() => {

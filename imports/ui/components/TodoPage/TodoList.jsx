@@ -8,7 +8,7 @@ const TodoList = ({ className, todoList, onTodoChecked, onTodoShared }) => (
   <div className={`todo-list ${className}`}>
     <List>
       {
-        todoList.map(({ id, author, text, checked, isPublic }) => (
+        todoList.map(({ _id: id, author, text, checked, isPublic }) => (
           <TodoListItem
             key={id}
             author={author}
@@ -28,7 +28,7 @@ TodoList.propTypes = {
   className: PropTypes.string,
   todoList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      _id: PropTypes.string,
       author: PropTypes.string,
       text: PropTypes.string,
       checked: PropTypes.bool,
