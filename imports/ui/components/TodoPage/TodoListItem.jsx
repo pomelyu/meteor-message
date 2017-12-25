@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 
 import { ListItem, ListItemText } from 'material-ui/List';
 
-const MessageListItem = ({ author, text }) => (
+const TodoListItem = ({ author, text }) => (
   <ListItem>
     <ListItemText primary={text} secondar={author} />
   </ListItem>
 );
 
-MessageListItem.propTypes = {
+TodoListItem.propTypes = {
   author: PropTypes.string,
   text: PropTypes.string,
 }
 
-MessageListItem.defaultProps = {
+TodoListItem.defaultProps = {
   author: '',
   text: '',
 }
 
-export default MessageListItem;
+export default TodoListItem;
