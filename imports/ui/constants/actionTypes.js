@@ -1,3 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-
 export const SET_APP_THEME = 'SET_APP_THEME';
+
+export const OPEN_SIDE_BAR = 'OPEN_SIDE_BAR';
+export const CLOSE_SIDE_BAR = 'CLOSE_SIDE_BAR';

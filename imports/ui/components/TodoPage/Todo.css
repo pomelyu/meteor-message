@@ -1,27 +1,26 @@
-.message-grid-container {
+.todo-grid-container {
   display: grid;
   grid-template-rows: [start] auto [line1] 60px [end];
   height: 100%;
   width: 100%;
 }
 
-.message-grid-item-list {
+.todo-grid-item-list {
   background-color: white;
   grid-row: start / line1;
 }
 
-.message-grid-item-input {
-  background-color: lightgray;
+.todo-grid-item-input {
   grid-row: line1 / end;
 }
 
-.message-list {
+.todo-list {
   max-height: 100%;
   overflow-x: auto;
   overflow-y: scroll;
 }
 
-.message-input {
+.todo-input {
   align-items: center;
   display: flex;
   flex-direction: row;
