@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import '../imports/api/todos/todos.js';
+import '../imports/api/teams/teams.js';
 
 import '../imports/api/todos/todo_method.js';
 

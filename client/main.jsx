@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import '../imports/api/todos/todos.js';
+import '../imports/api/teams/teams.js';
 
 import '../imports/api/todos/todo_method.js';
 
