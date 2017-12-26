@@ -14,6 +14,7 @@ const mapTrackerToProps = withTracker(() => {
     addTodo: (data) => Meteor.call('todos.add', data),
     handleTodoChecked: (id, checked) => Meteor.call('todos.setChecked', id, checked),
     handleTodoPubluc: (id, isPublic) => Meteor.call('todos.setIsPublic', id, isPublic),
+    handleTodoDelete: (id) => Meteor.call('todos.remove', id),
   }
 })
 

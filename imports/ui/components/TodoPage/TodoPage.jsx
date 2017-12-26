@@ -38,7 +38,7 @@ class TodoPage extends React.Component {
   }
 
   render() {
-    const { className, todoList, handleTodoChecked, handleTodoPubluc } = this.props;
+    const { className, todoList, handleTodoChecked, handleTodoPubluc, handleTodoDelete } = this.props;
     const { openAddDialog } = this.state;
 
     return (
@@ -48,6 +48,7 @@ class TodoPage extends React.Component {
           todoList={todoList}
           onTodoChecked={handleTodoChecked}
           onTodoShared={handleTodoPubluc}
+          onTodoDelete={handleTodoDelete}
         />
         <AddButton className="todo-grid-item-input" onClick={this.onOpenAddDialog} />
         <AddDialog
@@ -66,6 +67,7 @@ TodoPage.propTypes = {
   addTodo: PropTypes.func,
   handleTodoChecked: PropTypes.func,
   handleTodoPubluc: PropTypes.func,
+  handleTodoDelete: PropTypes.func,
 }
 
 /* eslint-disable no-unused-vars */
@@ -75,6 +77,7 @@ TodoPage.defaultProps = {
   addTodo: (data) => {},
   handleTodoChecked: (id, checked) => {},
   handleTodoPubluc: (id, isPublic) => {},
+  handleTodoDelete: (id) => {},
 }
 /* eslint-enable */
 
