@@ -11,7 +11,6 @@
 }
 
 .todo-grid-item-input {
-  background-color: lightgray;
   grid-row: line1 / end;
 }
 

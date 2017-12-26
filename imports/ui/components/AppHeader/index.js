@@ -1,3 +1,3 @@
-import AppHeader from './AppHeader';
+import AppHeaderContainer from './AppHeaderContainer.js';
 
-export default AppHeader;
+export default AppHeaderContainer;
