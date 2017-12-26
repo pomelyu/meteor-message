@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
-class MessageInput extends React.Component {
+class TodoInput extends React.Component {
   constructor(props) {
     super(props);
 
@@ -37,7 +37,7 @@ class MessageInput extends React.Component {
     const { className } = this.props;
     const { text } = this.state;
     return (
-      <form className={`message-input ${className}`} onSubmit={this.submitOnClick}>
+      <form className={`todo-input ${className}`} onSubmit={this.submitOnClick}>
         <TextField onChange={this.textOnChange} value={text} />
         <Button onClick={this.submitOnClick}>Send</Button>
       </form>
@@ -45,14 +45,16 @@ class MessageInput extends React.Component {
   }
 }
 
-MessageInput.propTypes = {
+TodoInput.propTypes = {
   className: PropTypes.string,
   submitOnClick: PropTypes.func,
 }
 
-MessageInput.defaultProps = {
+/* eslint-disable no-unused-vars */
+TodoInput.defaultProps = {
   className: '',
   submitOnClick: (text) => {},
 }
+/* eslint-enable no-unused-vars */
 
-export default MessageInput;
+export default TodoInput;
