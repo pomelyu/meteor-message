@@ -1,9 +1,11 @@
 .app-grid-container {
+  border: 1px lightgray solid;
   display: grid;
   grid-template-rows: [start] 60px [line1] auto [end];
-  height: 600px;
-  width: 400px;
-  border: 1px lightgray solid;
+  height: 97vh;
+  max-height: 100%;
+  max-width: 100%;
+  width: 100vw;
 }
 
 .app-grid-item-header {

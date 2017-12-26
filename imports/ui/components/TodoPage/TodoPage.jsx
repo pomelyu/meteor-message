@@ -1,37 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
-import _ from 'lodash';
 
 import TodoList from './TodoList.jsx';
-import TodoInput from './TodoInput.jsx';
+import AddDialog from './AddDialog.jsx';
+import AddButton from './AddButton.jsx';
 import './Todo.css';
 
 const AUTHOR_ME = 'me';
 
-const TodoPage = ({ className, todoList, addTodo, handleTodoChecked, handleTodoPubluc }) => {
+class TodoPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { openAddDialog: false },
 
-  const handleTextSubmit = (text) => {
+    this.onOpenAddDialog = this.onOpenAddDialog.bind(this);
+    this.onCloseAddDialog = this.onCloseAddDialog.bind(this);
+    this.addNewTodo= this.addNewTodo.bind(this);
+  }
+
+  onOpenAddDialog() {
+    this.setState({ openAddDialog: true });
+  }
+
+  onCloseAddDialog() {
+    this.setState({ openAddDialog: false });
+  }
+
+  addNewTodo(text) {
     const todo = {
       author: AUTHOR_ME,
       text,
       checked: false,
       isPublic: false
     }
-    addTodo(todo);
+    this.setState({ openAddDialog: false });
+    this.props.addTodo(todo);
   }
 
-  return (
-    <div className={`todo-grid-container ${className}`}>
-      <TodoList
-        className="todo-grid-item-list"
-        todoList={todoList}
-        onTodoChecked={handleTodoChecked}
-        onTodoShared={handleTodoPubluc}
-      />
-      <TodoInput className="todo-grid-item-input" submitOnClick={handleTextSubmit} />
-    </div>
-  )
+  render() {
+    const { className, todoList, handleTodoChecked, handleTodoPubluc } = this.props;
+    const { openAddDialog } = this.state;
+
+    return (
+      <div className={`todo-grid-container ${className}`}>
+        <TodoList
+          className="todo-grid-item-list"
+          todoList={todoList}
+          onTodoChecked={handleTodoChecked}
+          onTodoShared={handleTodoPubluc}
+        />
+        <AddButton className="todo-grid-item-input" onClick={this.onOpenAddDialog} />
+        <AddDialog
+          isOpen={openAddDialog}
+          onDialogClose={this.onCloseAddDialog}
+          onDialogSubmit={this.addNewTodo}
+        />
+      </div>
+    )
+  }
 }
 
 TodoPage.propTypes = {
