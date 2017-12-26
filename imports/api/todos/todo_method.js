@@ -6,6 +6,10 @@ Meteor.methods({
   'todos.add': function(todo) {
     check(todo, Object);
 
+    const { schema } = Todos;
+    const dataToInsert = schema.clean(todo);
+    schema.validate(dataToInsert);
+
     Todos.insert(todo);
   },
 
@@ -19,7 +23,11 @@ Meteor.methods({
     check(todoId, String);
     check(checked, Boolean);
 
-    Todos.update({ _id: todoId }, { $set: { checked } });
+    const { schema } = Todos;
+    const modifier = schema.clean({ $set: { checked } });
+    schema.validate(modifier, { modifier: true });
+
+    Todos.update({ _id: todoId }, modifier);
 
     // if (Meteor.isClient) {
     //   Todos.update({ _id: todoId }, { $set: { checked } });
@@ -35,6 +43,10 @@ Meteor.methods({
   'todos.setIsPublic': function(todoId, isPublic) {
     check(todoId, String);
     check(isPublic, Boolean);
+
+    const { schema } = Todos;
+    const modifier = schema.clean({ $set: { isPublic } });
+    if (!schema.validate(modifier, { modifier: true })) return;
 
     Todos.update({ _id: todoId }, { $set: { isPublic } })
   }
