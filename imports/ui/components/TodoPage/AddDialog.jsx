@@ -25,6 +25,7 @@ class AddDialog extends React.Component {
 
   handleDialogSubmit() {
     this.props.onDialogSubmit(this.state.text);
+    this.setState({ text: '' });
   }
 
   render() {
